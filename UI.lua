@@ -5377,7 +5377,7 @@ function library:Load(options)
             end
         }
 
-        local misc = settings:Section{name = "Cheat", Side = "right"}
+        local misc = settings:Section{name = "Interface", side = "right"}
 
         misc:Toggle{
             name = "Show Keybind List",
@@ -5480,42 +5480,9 @@ function library:Load(options)
         }
 
         misc:Button{
-            name = "Copy Game Invite (CONSOLE)",
-            callback = function()
-                setclipboard(('Roblox.GameLauncher.joinGameInstance(%s, "%s")'):format(game.PlaceId, game.JobId))
-            end
-        }
-
-        misc:Button{
-            name = "Copy Game Invite (LUA)",
-            callback = function()
-                setclipboard(('game:GetService("TeleportService"):TeleportToPlaceInstance(%s, "%s")'):format(game.PlaceId, game.JobId))
-            end
-        }
-
-        misc:Button{
-            name = "Join Discord Server",
-            callback = function()
-                request{
-                    ["Url"] = "http://127.0.0.1:6463/rpc?v=1",
-                    ["Method"] = "POST",
-                    ["Headers"] = {
-                        ["Content-Type"] = "application/json",
-                        ["Origin"] = "https://discord.com"
-                    },
-                    ["Body"] = services.HttpService:JSONEncode{
-                        ["cmd"] = "INVITE_BROWSER",
-                        ["nonce"] = ".",
-                        ["args"] = {code = library.discord}
-                    }
-                }
-            end
-        }
-
-        misc:Button{
             name = "Copy Discord Invite",
             callback = function()
-                setclipboard(library.discord)
+                setclipboard("https://discord.gg/QqjkeN8wjv")
             end
         }
 
